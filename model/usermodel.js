@@ -22,7 +22,7 @@ const schema = new mongoose.Schema({
         type:String
     },
     Stock:{
-        String
+        type:String
     },
     Product_price:{
         type:String
