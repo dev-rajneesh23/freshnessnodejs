@@ -38,3 +38,30 @@ exports.usersDetail = (request,response)=>{
         return response.status(500).json(error);
     })
 }
+
+exports.update = (request,res)=>{
+    userModel.updateOne({_id:request.params.id},
+        {
+           $set : {
+            Product_title:request.body.Product_title,
+            Product_Image:request.body.Product_Image,
+            Product_discription:request.body.Product_discription,
+            Product_rating:request.body.Product_rating,
+            Freshness:request.body.Freshness,
+            Farm:request.body.Farm,
+            Delivery:request.body.Delivery,
+            Stock:request.body.Stock,
+            Product_price:request.body.Product_price
+            }
+        }).then(result=>{
+            if(result.acknowledged==1){
+                return res.status(201).json({message:"data have been updated"});
+            }
+            else{
+                return res.status(500).json({message:"data have been not updated "})
+            }
+        }).catch(err=>{
+            return res.status(500).json(err);
+        })
+        
+}
