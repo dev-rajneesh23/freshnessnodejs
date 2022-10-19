@@ -72,15 +72,15 @@ exports.delete = (req,res)=>{
 
 exports.deleteall= (req,res)=>{
     userModel.deleteMany(res).then(result=>{
-        
-        if(result.send()==true){
-            return res.status(201).json({message:"data has been deleted"})
+         
+        if(result.acknowledged==true){
+            return res.status(201).json({message:"all data has been deleted"})
         }
         else{
             return res.status(500).json({message:"not deleted"})
         }
-    }).catch(err=>{
-        return res.status(500).json(err)
+    }).catch(error=>{
+        return res.status(500).json(error)
     })
     
 }
