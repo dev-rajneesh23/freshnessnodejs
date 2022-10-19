@@ -28,3 +28,13 @@ exports.users = (request,response)=>{
         return response.status(500).json(error)
     })
 }
+
+
+exports.usersDetail = (request,response)=>{
+    debugger;
+    userModel.findOne({_id:request.params.id}).then(result=>{
+        return response.status(200).json(result);
+    }).catch(error=>{
+        return response.status(500).json(error);
+    })
+}
