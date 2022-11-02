@@ -11,16 +11,16 @@ cloudinary.config({
     api_key: "193127782551574",
     api_secret: "wDScotUw6HIzYsggWek2eh2T4Gc"
 });
-router.post("/user-data",usercontroller.add_user);
+router.post("/save-product",usercontroller.add_user);
 
-router.get("/userdata",usercontroller.users);
-router.get("/userdetails/:id",usercontroller.usersDetail);
+router.get("/product-data",usercontroller.users);
+router.get("/product-details/:id",usercontroller.usersDetail);
 router.put("/update/:id",usercontroller.update )
 router.delete("/delete/:id",usercontroller.delete );
 router.delete("/delete",usercontroller.deleteall );
 router.post("/add-category", usercontroller.addcategory);
 router.get("/view-category-list", usercontroller.viewCategory);
-router.get("/productcategory/:category",usercontroller.bakery_item)
+router.get("/product-category/:category",usercontroller.bakery_item)
 // router.post("/uploadimg", uploader.single("file"), async (req, res) => {
 //       const upload = await cloudinary.v2.uploader.upload(req.file.path);
 //       return res.json({
