@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 
-app.use("/user",router);
+app.use("/",router);
 app.use("/bakery",bakery_router)
 
 
