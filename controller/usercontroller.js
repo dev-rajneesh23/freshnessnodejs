@@ -69,7 +69,7 @@ exports.usersDetail = (request,response)=>{
 }
 exports.bakery_item = (request,response)=>{
     debugger;
-    userModel.findAll({category:request.params.category}).then(result=>{
+    userModel.find({category:request.params.category}).then(result=>{
         return response.status(200).json(result);
     }).catch(error=>{
         return response.status(500).json(error);
