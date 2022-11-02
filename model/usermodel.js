@@ -1,31 +1,39 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 const schema = new mongoose.Schema({
-    Product_title:{
+    title:{
         type:String
     },
-    Product_Image:{
+    image:{
         type:String
     },
-    Product_discription:{
+    discription:{
         type:String
     },
-    Product_rating:{
+    rating:{
         type:Number
     },
-    Freshness:{
+    freshness:{
         type:String
     },
-    Farm:{
+    farm:{
         type:String
     },
-    Delivery:{
+    delivery:{
         type:String
     },
-    Stock:{
+    stock:{
         type:String
     },
-    Product_price:{
+    price:{
         type:String
-    }
+    },
+    category: {
+        type: String,
+        
+    },
+ 
+ 
+  
 })
 module.exports = mongoose.model("Users",schema);

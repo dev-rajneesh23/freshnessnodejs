@@ -1,29 +1,57 @@
 
-const usermodel = require("../model/usermodel");
 const userModel = require("../model/usermodel");
+const categorymodel = require("../model/categorymodel");
+// const { request } = require("express");
+const cloudinary = require("cloudinary").v2;
+
+
+exports.addcategory =(request,res)=>{
+categorymodel.create({
+    categoryname:request.body.name,
+    categoryimage:request.body.categoryimage
+}).then(result=>{
+    console.log(result);
+    return res.status(201).json(result);
+}).catch(err=>{
+    return res.status(500).json(err);
+})
+}
 
 exports.add_user = (request,res)=>{
     console.log(request)
-    userModel.create({
-        Product_title:request.body.Product_title,
-        Product_Image:request.body.Product_Image,
-        Product_discription:request.body.Product_discription,
-        Product_rating:request.body.Product_rating,
-        Freshness:request.body.Freshness,
-        Farm:request.body.Farm,
-        Delivery:request.body.Delivery,
-        Stock:request.body.Stock,
-        Product_price:request.body.Product_price
-    }).then(result=>{
+    const file = request.files.image
+    cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
         console.log(result);
-        return res.status(201).json(result);
-    }).catch(err=>{
-        return res.status(500).json(err);
-    })
+        userModel.create({
+            title:request.body.title,
+            image:result.secure_url,
+            discription:request.body.discription,
+            rating:request.body.rating,
+            freshness:request.body.freshness,
+            farm:request.body.farm,
+            delivery:request.body.delivery,
+            stock:request.body.stock,
+            price:request.body.price,
+            category:request.body.category
+        }).then(result=>{
+            console.log(result);
+            return res.status(201).json(result);
+        }).catch(err=>{
+            return res.status(500).json(err);
+        })
+    });
+   
 }
 
 exports.users = (request,response)=>{
     userModel.find().then(result=>{
+        return response.status(200).json(result);
+    }).catch(error=>{
+        return response.status(500).json(error)
+    })
+}
+exports.viewCategory = (request,response)=>{
+    categorymodel.find().then(result=>{
         return response.status(200).json(result);
     }).catch(error=>{
         return response.status(500).json(error)
