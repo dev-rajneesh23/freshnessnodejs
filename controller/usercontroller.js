@@ -67,6 +67,14 @@ exports.usersDetail = (request,response)=>{
         return response.status(500).json(error);
     })
 }
+exports.bakery_item = (request,response)=>{
+    debugger;
+    userModel.findAll({category:request.params.category}).then(result=>{
+        return response.status(200).json(result);
+    }).catch(error=>{
+        return response.status(500).json(error);
+    })
+}
 
 exports.update = (request,res)=>{
     userModel.updateOne({_id:request.params.id},
