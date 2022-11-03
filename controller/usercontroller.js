@@ -43,13 +43,12 @@ exports.add_user = (request,res)=>{
 
 exports.users = (request,response)=>{
     console.log(request.params.key);
-    console.log("title: ", request.query.title);
-    console.log("category:", request.query.category);
-    res.send();
     userModel.find(
         {
             "$or":[
-                {"title":{$regex:request.params.key}}
+                {"title":{$regex:request.params.key}},
+                {"category":{$regex:request.params.key}},
+
             ]
         }
     ).then(result=>{
