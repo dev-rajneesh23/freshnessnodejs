@@ -18,10 +18,8 @@ categorymodel.create({
 }
 
 exports.add_user = (request,res)=>{
-    console.log(request)
     const file = request.files.image
     cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
-        console.log(result);
         userModel.create({
             title:request.body.title,
             image:result.secure_url,
@@ -44,7 +42,18 @@ exports.add_user = (request,res)=>{
 }
 
 exports.users = (request,response)=>{
-    userModel.find().then(result=>{
+    console.log(request.params.key);
+    console.log("title: ", request.query.title);
+    console.log("category:", request.query.category);
+    res.send();
+    userModel.find(
+        {
+            "$or":[
+                {"title":{$regex:request.params.key}}
+            ]
+        }
+    ).then(result=>{
+
         return response.status(200).json(result);
     }).catch(error=>{
         return response.status(500).json(error)

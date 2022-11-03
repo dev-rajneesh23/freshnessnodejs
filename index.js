@@ -7,7 +7,7 @@ const cloudinary = require("cloudinary").v2;
 const fileupload =require("express-fileupload");
 
    
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 const app = express();
 mongoose.connect("mongodb+srv://rajneeshsanodiya:rajneesh@cluster0.u16vgkt.mongodb.net/?retryWrites=true&w=majority")
 .then((res)=>{
