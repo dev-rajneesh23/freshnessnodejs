@@ -40,9 +40,19 @@ exports.add_user = (request,res)=>{
     });
    
 }
+exports.usersdata = (request,response)=>{
+    
+      let page = parseInt(request.query.page)
+      let limit = parseInt(request.query.limit)
+        userModel.find().skip((page-1)*limit).select().limit(limit).then(result=>{ 
+            return response.status(200).json(result);
+        }).catch(error=>{
+            return response.status(500).json(error)
+        })
+}
 
 exports.users = (request,response)=>{
-    console.log(request.params.key);
+    
     userModel.find(
         {
             "$or":[
@@ -52,11 +62,11 @@ exports.users = (request,response)=>{
             ]
         }
     ).then(result=>{
-
         return response.status(200).json(result);
     }).catch(error=>{
         return response.status(500).json(error)
     })
+    
 }
 exports.viewCategory = (request,response)=>{
     categorymodel.find().then(result=>{

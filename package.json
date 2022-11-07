@@ -1,11 +1,10 @@
 {
   "name": "freshness",
   "version": "1.0.0",
-  "description": "",
   "main": "freshness.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +17,16 @@
     "i": "^0.3.7",
     "mongoose": "^6.6.5",
     "npm": "^8.19.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-rajneesh23/freshnessnodejs.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/dev-rajneesh23/freshnessnodejs/issues"
+  },
+  "homepage": "https://github.com/dev-rajneesh23/freshnessnodejs#readme",
+  "description": ""
 }
