@@ -14,7 +14,7 @@ cloudinary.config({
 router.post("/save-product",usercontroller.add_user);
 
 router.get("/product-data/:key",usercontroller.users);
-router.get("/products-data",usercontroller.usersdata);
+router.get("/product-data",usercontroller.usersdata);
 router.get("/product-details/:id",usercontroller.usersDetail);
 router.put("/update/:id",usercontroller.update )
 router.delete("/delete/:id",usercontroller.delete );
