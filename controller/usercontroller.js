@@ -44,30 +44,52 @@ exports.usersdata = (request,response)=>{
     
       let page = parseInt(request.query.page)
       let limit = parseInt(request.query.limit)
-        userModel.find().skip((page-1)*limit).select().limit(limit).then(result=>{ 
-            return response.status(200).json(result);
-        }).catch(error=>{
-            return response.status(500).json(error)
-        })
-}
-
-exports.users = (request,response)=>{
+      let search = request.query.search;
+    //   let category = request.query.category;
+      userModel.find(
     
-    userModel.find(
         {
-            "$or":[
-                {"title":{$regex:request.params.key}},
-                {"category":{$regex:request.params.key}},
-
+            $or:[
+                {"title":{$regex:search}},
+                {"category":{$regex:search}},
+                {"delivery":{$regex:search}},
+                {"farm":{$regex:search}},
+                // {"rating":{$regex:search}},
+                {"price":{$regex:search}},
             ]
         }
-    ).then(result=>{
-        return response.status(200).json(result);
+    ).skip((page-1)*limit).select().limit(limit).then(result=>{ 
+        return response.status(200).json({
+            data: result,
+            count: result.length
+        });
     }).catch(error=>{
         return response.status(500).json(error)
     })
-    
 }
+
+// exports.users = (request,response)=>{
+//        let page = parseInt(request.query.page);
+//        let limit = parseInt(request.query.limit);
+//        let title = request.params.key
+//     userModel.find(
+//         {
+//             "$or":[
+//                 {"title":{$regex:title}},
+//                 {"category":{$regex:request.params.key}},
+//                 {"delivery":{$regex:request.params.key}},
+//                 {"farm":{$regex:request.params.key}},
+
+//             ]
+//         }
+//     ).then(result=>{
+//         return response.status(200).json(result);
+//     }).catch(error=>{
+//         return response.status(500).json(error)
+//     })
+// }
+    
+
 exports.viewCategory = (request,response)=>{
     categorymodel.find().then(result=>{
         return response.status(200).json(result);
