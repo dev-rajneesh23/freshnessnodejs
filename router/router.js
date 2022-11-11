@@ -13,7 +13,7 @@ cloudinary.config({
 });
 router.post("/save-product",usercontroller.add_user);
 
-// router.get("/product-datas/:key",usercontroller.users);
+router.get("/product-datas",usercontroller.users);
 router.get("/product-data",usercontroller.usersdata);
 router.get("/product-details/:id",usercontroller.usersDetail);
 router.put("/update/:id",usercontroller.update )

@@ -32,6 +32,15 @@ const schema = new mongoose.Schema({
         type: String,
         
     },
+    start_date: {
+        type: Date,
+        required: true
+    },
+    end_date: {
+        type: Date,
+        required: true
+    },
+
  
  
   

@@ -68,26 +68,24 @@ exports.usersdata = (request,response)=>{
     })
 }
 
-// exports.users = (request,response)=>{
-//        let page = parseInt(request.query.page);
-//        let limit = parseInt(request.query.limit);
-//        let title = request.params.key
-//     userModel.find(
-//         {
-//             "$or":[
-//                 {"title":{$regex:title}},
-//                 {"category":{$regex:request.params.key}},
-//                 {"delivery":{$regex:request.params.key}},
-//                 {"farm":{$regex:request.params.key}},
+exports.users = (request,response)=>{
+       let page = parseInt(request.query.page);
+       let limit = parseInt(request.query.limit);
+       let search = request.query.search;
 
-//             ]
-//         }
-//     ).then(result=>{
-//         return response.status(200).json(result);
-//     }).catch(error=>{
-//         return response.status(500).json(error)
-//     })
-// }
+    userModel.find(
+        {
+            "$or":[
+                {"title":{$regex:search}},
+             
+            ]
+        }
+    ).then(result=>{
+        return response.status(200).json(result);
+    }).catch(error=>{
+        return response.status(500).json(error)
+    })
+}
     
 
 exports.viewCategory = (request,response)=>{
